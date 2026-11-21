@@ -1,0 +1,22 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment Files
+.env
+.env.local
+*.env
+!.env.example
