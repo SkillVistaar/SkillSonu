@@ -43,8 +43,8 @@ export default function App() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[350px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Shared Header Navigation */}
-      <header className="h-18 px-6 sm:px-12 flex items-center justify-between border-b border-surface-900 bg-surface-950/80 backdrop-blur sticky top-0 z-30">
+      {/* Fixed Top Header Navigation */}
+      <header className="fixed top-0 left-0 right-0 w-full h-16 px-6 sm:px-12 flex items-center justify-between border-b border-surface-850 bg-surface-950/90 backdrop-blur-md z-50 shadow-sm">
         <button
           onClick={() => navigateTo('landing')}
           className="flex items-center space-x-3 text-left group focus:outline-none"
@@ -120,15 +120,18 @@ export default function App() {
         </nav>
       </header>
 
-      {/* Render Dynamic Separate Pages */}
-      {view === 'landing' && <LandingPage onNavigate={navigateTo} />}
-      {view === 'login' && <LoginPage onNavigate={navigateTo} />}
-      {view === 'signup' && <SignupPage onNavigate={navigateTo} />}
+      {/* Main Content Area with top padding for fixed navbar */}
+      <div className="pt-16 flex-1 flex flex-col min-h-screen">
+        {/* Render Dynamic Separate Pages */}
+        {view === 'landing' && <LandingPage onNavigate={navigateTo} />}
+        {view === 'login' && <LoginPage onNavigate={navigateTo} />}
+        {view === 'signup' && <SignupPage onNavigate={navigateTo} />}
 
-      {/* Shared Footer */}
-      <footer className="h-14 px-6 border-t border-surface-900 flex items-center justify-center text-xs text-surface-500">
-        <p>© {new Date().getFullYear()} SkillVistaar. All rights reserved.</p>
-      </footer>
+        {/* Shared Footer */}
+        <footer className="h-14 px-6 border-t border-surface-900 flex items-center justify-center text-xs text-surface-500">
+          <p>© {new Date().getFullYear()} SkillVistaar. All rights reserved.</p>
+        </footer>
+      </div>
     </div>
   )
 }
