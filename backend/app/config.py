@@ -16,10 +16,12 @@ class Settings(BaseSettings):
 
     @property
     def normalized_database_url(self) -> str:
-        """Render provides postgres:// URLs, but SQLAlchemy 1.4+ requires postgresql://"""
+        """Render provides postgres:// URLs, but SQLAlchemy requires postgresql+psycopg://"""
         url = self.database_url
         if url and url.startswith("postgres://"):
-            url = url.replace("postgres://", "postgresql://", 1)
+            url = url.replace("postgres://", "postgresql+psycopg://", 1)
+        elif url and url.startswith("postgresql://") and not url.startswith("postgresql+"):
+            url = url.replace("postgresql://", "postgresql+psycopg://", 1)
         return url
 
     @property
