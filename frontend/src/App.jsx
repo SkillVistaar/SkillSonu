@@ -7,15 +7,13 @@ import {
   Layers,
   ArrowUpRight,
   Plus,
-  CheckCircle2,
-  Clock,
   Sparkles,
   RefreshCw,
   Code2,
-  ExternalLink,
-  ChevronRight,
   ShieldCheck,
-  Send
+  Send,
+  Palette,
+  Check
 } from 'lucide-react'
 
 export default function App() {
@@ -116,9 +114,9 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-surface-950 text-surface-100 flex flex-col font-sans">
       <div className="flex flex-1 min-h-screen">
-        {/* Professional Sidebar */}
+        {/* Unified Sidebar */}
         <Sidebar
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
@@ -131,7 +129,7 @@ export default function App() {
 
         {/* Main Workspace Area */}
         <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
-          {/* Top Navbar */}
+          {/* Unified Navbar */}
           <Navbar
             setSidebarOpen={setSidebarOpen}
             activeTab={activeTab}
@@ -142,23 +140,28 @@ export default function App() {
           {/* Dynamic Page Content */}
           <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
             {/* Header Banner */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-850">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-surface-800">
               <div>
-                <h1 className="text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
-                  <span>Welcome to SkillVistaar Platform</span>
-                  <span className="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 font-medium px-2 py-0.5 rounded-full">
-                    v1.0.0
-                  </span>
-                </h1>
-                <p className="text-sm text-slate-400 mt-1">
-                  Full-stack architecture running React, Tailwind, FastAPI, and PostgreSQL on Render.
+                <div className="flex items-center space-x-2">
+                  <h1 className="heading-xl">SkillVistaar Platform</h1>
+                  <span className="badge-brand">v1.1.0</span>
+                </div>
+                <p className="subtext mt-1">
+                  Unified enterprise design system with React, Tailwind CSS, Python FastAPI, and PostgreSQL.
                 </p>
               </div>
 
               <div className="flex items-center space-x-3">
                 <button
+                  onClick={() => setActiveTab('styleguide')}
+                  className="btn-secondary btn-sm"
+                >
+                  <Palette className="w-3.5 h-3.5" />
+                  <span>Color & Button Guide</span>
+                </button>
+                <button
                   onClick={() => setActiveTab('database')}
-                  className="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm shadow-indigo-600/30 transition-all flex items-center space-x-1.5"
+                  className="btn-primary btn-sm"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Insert DB Record</span>
@@ -169,33 +172,33 @@ export default function App() {
             {/* Metric / Health Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Frontend Card */}
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm hover:border-slate-700 transition-colors">
+              <div className="card-interactive p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Frontend App</span>
-                  <div className="w-7 h-7 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                  <span className="text-xs font-medium text-surface-400">Frontend App</span>
+                  <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
                     <Code2 className="w-4 h-4" />
                   </div>
                 </div>
                 <div className="mt-3">
-                  <div className="text-xl font-bold text-white">React 18 + Vite</div>
-                  <div className="text-xs text-slate-400 flex items-center space-x-1.5 mt-1">
+                  <div className="heading-md">React 18 + Vite</div>
+                  <div className="text-xs text-surface-400 flex items-center space-x-1.5 mt-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    <span className="text-emerald-400 font-medium">Tailwind CSS Active</span>
+                    <span className="text-emerald-400 font-medium">Unified Design System</span>
                   </div>
                 </div>
               </div>
 
               {/* Backend API Card */}
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm hover:border-slate-700 transition-colors">
+              <div className="card-interactive p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Backend API</span>
-                  <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+                  <span className="text-xs font-medium text-surface-400">Backend API</span>
+                  <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-brand-400 flex items-center justify-center">
                     <Server className="w-4 h-4" />
                   </div>
                 </div>
                 <div className="mt-3">
-                  <div className="text-xl font-bold text-white">FastAPI Engine</div>
-                  <div className="text-xs text-slate-400 flex items-center space-x-1.5 mt-1">
+                  <div className="heading-md">FastAPI Engine</div>
+                  <div className="text-xs text-surface-400 flex items-center space-x-1.5 mt-1.5">
                     <span className={`w-2 h-2 rounded-full ${health.backend ? 'bg-emerald-400' : 'bg-amber-400'}`} />
                     <span className={health.backend ? 'text-emerald-400 font-medium' : 'text-amber-400'}>
                       {health.backend ? 'Status: Online' : 'Connecting...'}
@@ -205,16 +208,16 @@ export default function App() {
               </div>
 
               {/* PostgreSQL Card */}
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm hover:border-slate-700 transition-colors">
+              <div className="card-interactive p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">PostgreSQL</span>
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                  <span className="text-xs font-medium text-surface-400">PostgreSQL</span>
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
                     <Database className="w-4 h-4" />
                   </div>
                 </div>
                 <div className="mt-3">
-                  <div className="text-xl font-bold text-white">Managed DB</div>
-                  <div className="text-xs text-slate-400 flex items-center space-x-1.5 mt-1">
+                  <div className="heading-md">Managed DB</div>
+                  <div className="text-xs text-surface-400 flex items-center space-x-1.5 mt-1.5">
                     <span className={`w-2 h-2 rounded-full ${health.database ? 'bg-emerald-400' : 'bg-amber-400'}`} />
                     <span className={health.database ? 'text-emerald-400 font-medium' : 'text-amber-400'}>
                       {health.database ? 'Connected & Synced' : 'Checking Connection'}
@@ -224,16 +227,16 @@ export default function App() {
               </div>
 
               {/* Render Cloud Card */}
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm hover:border-slate-700 transition-colors">
+              <div className="card-interactive p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Cloud Deployment</span>
-                  <div className="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                  <span className="text-xs font-medium text-surface-400">Cloud Deployment</span>
+                  <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                 </div>
                 <div className="mt-3">
-                  <div className="text-xl font-bold text-white">Render Blueprint</div>
-                  <div className="text-xs text-slate-400 flex items-center space-x-1.5 mt-1">
+                  <div className="heading-md">Render Blueprint</div>
+                  <div className="text-xs text-surface-400 flex items-center space-x-1.5 mt-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400" />
                     <span className="text-emerald-400 font-medium">Automatic CI/CD</span>
                   </div>
@@ -245,39 +248,41 @@ export default function App() {
             {activeTab === 'dashboard' && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Main Interactive Card */}
-                <div className="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="lg:col-span-2 card p-6 space-y-4">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="text-lg font-semibold text-white">Full-Stack Canvas</h2>
-                      <p className="text-xs text-slate-400">
-                        Blank slate ready for your custom features, routes, and data models.
+                      <h2 className="heading-lg">Platform Workspace</h2>
+                      <p className="subtext">
+                        A blank, production-ready canvas with unified design tokens and persistent PostgreSQL storage.
                       </p>
                     </div>
-                    <span className="px-2.5 py-1 text-xs rounded-full bg-slate-800 text-slate-300 font-mono">
+                    <span className="badge-neutral font-mono">
                       render.yaml
                     </span>
                   </div>
 
-                  <div className="p-6 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-4 text-center my-4">
-                    <div className="w-12 h-12 mx-auto rounded-2xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <div className="p-8 rounded-xl bg-surface-950 border border-surface-800 space-y-4 text-center my-4">
+                    <div className="w-12 h-12 mx-auto rounded-2xl bg-brand-500/15 border border-brand-500/30 flex items-center justify-center text-brand-400">
                       <Sparkles className="w-6 h-6" />
                     </div>
-                    <h3 className="text-base font-semibold text-white">Your Professional Foundation is Live</h3>
-                    <p className="text-xs text-slate-400 max-w-md mx-auto">
-                      Use the navigation on the left to switch between views, inspect PostgreSQL tables, or test the FastAPI endpoints.
+                    <h3 className="heading-md">Unified Professional Styling Ready</h3>
+                    <p className="subtext max-w-md mx-auto">
+                      All buttons, surface containers, color palettes, badges, and form controls are centralized in <code className="text-brand-300 font-mono text-xs">index.css</code> and <code className="text-brand-300 font-mono text-xs">tailwind.config.js</code>.
                     </p>
-                    <div className="pt-2 flex flex-wrap justify-center gap-2">
+                    <div className="pt-2 flex flex-wrap justify-center gap-3">
                       <button
-                        onClick={() => setActiveTab('database')}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 transition-colors"
+                        onClick={() => setActiveTab('styleguide')}
+                        className="btn-primary btn-sm"
                       >
-                        Explore Database
+                        <Palette className="w-3.5 h-3.5" />
+                        <span>View Style Guide</span>
                       </button>
                       <button
-                        onClick={() => setActiveTab('api')}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 transition-colors"
+                        onClick={() => setActiveTab('database')}
+                        className="btn-secondary btn-sm"
                       >
-                        Inspect API
+                        <Database className="w-3.5 h-3.5" />
+                        <span>Inspect PostgreSQL</span>
                       </button>
                     </div>
                   </div>
@@ -285,27 +290,104 @@ export default function App() {
 
                 {/* Quick Info Sidebar Column */}
                 <div className="space-y-4">
-                  <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 space-y-3">
-                    <h3 className="text-sm font-semibold text-white">Quick Links</h3>
-                    <div className="space-y-2 text-xs">
+                  <div className="card p-5 space-y-3">
+                    <h3 className="heading-md">Platform Links</h3>
+                    <div className="space-y-2">
                       <a
                         href="https://github.com/SkillVistaar/SkillSonu"
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-slate-950/60 hover:bg-slate-800/70 text-slate-300 hover:text-white border border-slate-800/60 transition-colors group"
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-surface-950 hover:bg-surface-800 text-surface-300 hover:text-white border border-surface-800 transition-colors group text-xs"
                       >
                         <span>GitHub Repository</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-surface-400 group-hover:text-white" />
                       </a>
                       <a
                         href="https://dashboard.render.com"
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-slate-950/60 hover:bg-slate-800/70 text-slate-300 hover:text-white border border-slate-800/60 transition-colors group"
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-surface-950 hover:bg-surface-800 text-surface-300 hover:text-white border border-surface-800 transition-colors group text-xs"
                       >
                         <span>Render Dashboard</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-surface-400 group-hover:text-white" />
                       </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Tab: Style Guide & Unified Design System */}
+            {activeTab === 'styleguide' && (
+              <div className="space-y-6">
+                {/* Unified Buttons Section */}
+                <div className="card p-6 space-y-5">
+                  <div>
+                    <h2 className="heading-lg">Unified Button System</h2>
+                    <p className="subtext">
+                      Standardized button classes with hover states, active compressions, focus rings, and size scales.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-2.5">
+                        Style Variants
+                      </h4>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <button className="btn-primary btn-md">
+                          <span>Primary Button</span>
+                        </button>
+                        <button className="btn-secondary btn-md">
+                          <span>Secondary Button</span>
+                        </button>
+                        <button className="btn-outline btn-md">
+                          <span>Outline Button</span>
+                        </button>
+                        <button className="btn-ghost btn-md">
+                          <span>Ghost Button</span>
+                        </button>
+                        <button className="btn-danger btn-md">
+                          <span>Danger Action</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-2.5">
+                        Size Scales
+                      </h4>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <button className="btn-primary btn-sm">Small (.btn-sm)</button>
+                        <button className="btn-primary btn-md">Medium (.btn-md)</button>
+                        <button className="btn-primary btn-lg">Large (.btn-lg)</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Unified Badges & Color Tokens */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Badges */}
+                  <div className="card p-6 space-y-4">
+                    <h2 className="heading-lg">Unified Badges</h2>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="badge-brand">Brand Badge</span>
+                      <span className="badge-success">Success / Live</span>
+                      <span className="badge-warning">Warning / Pending</span>
+                      <span className="badge-danger">Danger / Offline</span>
+                      <span className="badge-neutral">Neutral System</span>
+                    </div>
+                  </div>
+
+                  {/* Palette Tokens */}
+                  <div className="card p-6 space-y-4">
+                    <h2 className="heading-lg">Unified Palette Tokens</h2>
+                    <div className="grid grid-cols-4 gap-2 text-center text-[10px] font-mono">
+                      <div className="p-2.5 rounded bg-brand-500 text-white font-semibold">brand-500</div>
+                      <div className="p-2.5 rounded bg-brand-600 text-white font-semibold">brand-600</div>
+                      <div className="p-2.5 rounded bg-surface-800 text-surface-200">surface-800</div>
+                      <div className="p-2.5 rounded bg-surface-900 text-surface-200 border border-surface-800">surface-900</div>
                     </div>
                   </div>
                 </div>
@@ -316,20 +398,20 @@ export default function App() {
             {activeTab === 'database' && (
               <div className="space-y-6">
                 {/* Insert Form */}
-                <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
-                  <h2 className="text-base font-semibold text-white mb-1">Insert New Record (PostgreSQL)</h2>
-                  <p className="text-xs text-slate-400 mb-4">
-                    Test live database insertion through the FastAPI <code className="text-indigo-400 font-mono">POST /api/items</code> endpoint.
+                <div className="card p-6">
+                  <h2 className="heading-lg mb-1">Insert New Record (PostgreSQL)</h2>
+                  <p className="subtext mb-4">
+                    Test live database insertion through the FastAPI <code className="text-brand-400 font-mono">POST /api/items</code> endpoint.
                   </p>
 
                   <form onSubmit={handleAddItem} className="space-y-3 max-w-xl">
                     <div>
                       <input
                         type="text"
-                        placeholder="Title (e.g. My First Project)"
+                        placeholder="Title (e.g. Production Task)"
                         value={newItemTitle}
                         onChange={(e) => setNewItemTitle(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+                        className="input"
                         required
                       />
                     </div>
@@ -339,18 +421,18 @@ export default function App() {
                         placeholder="Description (optional)"
                         value={newItemDesc}
                         onChange={(e) => setNewItemDesc(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+                        className="input"
                       />
                     </div>
                     {itemError && (
-                      <div className="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 p-2 rounded-lg">
+                      <div className="badge-danger text-xs p-2 rounded-lg block">
                         {itemError}
                       </div>
                     )}
                     <button
                       type="submit"
                       disabled={creatingItem}
-                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors flex items-center space-x-1.5 disabled:opacity-50"
+                      className="btn-primary btn-md"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{creatingItem ? 'Saving to Database...' : 'Save Record'}</span>
@@ -359,15 +441,15 @@ export default function App() {
                 </div>
 
                 {/* Items Table */}
-                <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+                <div className="card p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h3 className="text-sm font-semibold text-white">Table: <code className="text-indigo-400 font-mono">starter_items</code></h3>
-                      <p className="text-xs text-slate-400">Total records stored in PostgreSQL: {items.length}</p>
+                      <h3 className="heading-md">Table: <code className="text-brand-400 font-mono">starter_items</code></h3>
+                      <p className="subtext">Total records stored in PostgreSQL: {items.length}</p>
                     </div>
                     <button
                       onClick={fetchItems}
-                      className="p-1.5 text-slate-400 hover:text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+                      className="btn-secondary btn-icon-sm"
                       title="Reload Table"
                     >
                       <RefreshCw className="w-3.5 h-3.5" />
@@ -377,27 +459,27 @@ export default function App() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-800 text-slate-400">
+                        <tr className="border-b border-surface-800 text-surface-400">
                           <th className="py-2.5 px-3 font-semibold">ID</th>
                           <th className="py-2.5 px-3 font-semibold">Title</th>
                           <th className="py-2.5 px-3 font-semibold">Description</th>
                           <th className="py-2.5 px-3 font-semibold">Created At</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                      <tbody className="divide-y divide-surface-800/60 text-surface-300">
                         {items.length === 0 ? (
                           <tr>
-                            <td colSpan="4" className="text-center py-6 text-slate-400">
+                            <td colSpan="4" className="text-center py-6 text-surface-400">
                               No records in table yet. Add one above!
                             </td>
                           </tr>
                         ) : (
                           items.map(item => (
-                            <tr key={item.id} className="hover:bg-slate-850/50 transition-colors">
-                              <td className="py-2.5 px-3 font-mono text-indigo-400">{item.id}</td>
+                            <tr key={item.id} className="hover:bg-surface-850/60 transition-colors">
+                              <td className="py-2.5 px-3 font-mono text-brand-400">{item.id}</td>
                               <td className="py-2.5 px-3 font-medium text-white">{item.title}</td>
-                              <td className="py-2.5 px-3 text-slate-400">{item.description || '-'}</td>
-                              <td className="py-2.5 px-3 font-mono text-slate-400">
+                              <td className="py-2.5 px-3 text-surface-400">{item.description || '-'}</td>
+                              <td className="py-2.5 px-3 font-mono text-surface-400">
                                 {item.created_at ? new Date(item.created_at).toLocaleDateString() : 'Just now'}
                               </td>
                             </tr>
@@ -413,38 +495,38 @@ export default function App() {
             {/* Tab 3: API Services View */}
             {activeTab === 'api' && (
               <div className="space-y-4">
-                <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
-                  <h2 className="text-base font-semibold text-white mb-1">FastAPI Endpoints</h2>
-                  <p className="text-xs text-slate-400 mb-4">
-                    The backend exposes interactive Swagger documentation at <code className="text-indigo-400 font-mono">/docs</code>.
+                <div className="card p-6">
+                  <h2 className="heading-lg mb-1">FastAPI Endpoints</h2>
+                  <p className="subtext mb-4">
+                    The backend exposes interactive Swagger documentation at <code className="text-brand-400 font-mono">/docs</code>.
                   </p>
 
                   <div className="space-y-3">
-                    <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between text-xs">
+                    <div className="p-3 rounded-lg bg-surface-950 border border-surface-800 flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-3">
-                        <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-bold">GET</span>
-                        <code className="text-slate-200 font-mono">/api/health</code>
-                        <span className="text-slate-400 hidden sm:inline">- Healthcheck and DB status</span>
+                        <span className="badge-success font-mono font-bold">GET</span>
+                        <code className="text-surface-200 font-mono">/api/health</code>
+                        <span className="subtext hidden sm:inline">- Healthcheck and DB status</span>
                       </div>
-                      <span className="text-[11px] text-emerald-400 font-medium">Ready</span>
+                      <span className="badge-success">Ready</span>
                     </div>
 
-                    <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between text-xs">
+                    <div className="p-3 rounded-lg bg-surface-950 border border-surface-800 flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-3">
-                        <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-bold">GET</span>
-                        <code className="text-slate-200 font-mono">/api/items</code>
-                        <span className="text-slate-400 hidden sm:inline">- Fetch all items from PostgreSQL</span>
+                        <span className="badge-success font-mono font-bold">GET</span>
+                        <code className="text-surface-200 font-mono">/api/items</code>
+                        <span className="subtext hidden sm:inline">- Fetch all items from PostgreSQL</span>
                       </div>
-                      <span className="text-[11px] text-emerald-400 font-medium">Ready</span>
+                      <span className="badge-success">Ready</span>
                     </div>
 
-                    <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between text-xs">
+                    <div className="p-3 rounded-lg bg-surface-950 border border-surface-800 flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-3">
-                        <span className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-mono font-bold">POST</span>
-                        <code className="text-slate-200 font-mono">/api/items</code>
-                        <span className="text-slate-400 hidden sm:inline">- Create a new record in PostgreSQL</span>
+                        <span className="badge-brand font-mono font-bold">POST</span>
+                        <code className="text-surface-200 font-mono">/api/items</code>
+                        <span className="subtext hidden sm:inline">- Create a new record in PostgreSQL</span>
                       </div>
-                      <span className="text-[11px] text-indigo-400 font-medium">Ready</span>
+                      <span className="badge-brand">Ready</span>
                     </div>
                   </div>
                 </div>
@@ -452,18 +534,18 @@ export default function App() {
             )}
 
             {/* Fallback for other tabs */}
-            {!['dashboard', 'database', 'api'].includes(activeTab) && (
-              <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-12 text-center space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center mx-auto">
+            {!['dashboard', 'database', 'api', 'styleguide'].includes(activeTab) && (
+              <div className="card p-12 text-center space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center mx-auto">
                   <Sparkles className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-semibold text-white capitalize">{activeTab} Section</h3>
-                <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                <h3 className="heading-md capitalize">{activeTab} Section</h3>
+                <p className="subtext max-w-sm mx-auto">
                   This section is ready for you to add your custom business logic and components.
                 </p>
                 <button
                   onClick={() => setActiveTab('dashboard')}
-                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-lg transition-colors"
+                  className="btn-secondary btn-sm"
                 >
                   Return to Dashboard
                 </button>

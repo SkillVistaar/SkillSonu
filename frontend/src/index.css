@@ -2,6 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  height: 100%;
+@layer base {
+  html, body, #root {
+    height: 100%;
+    background-color: theme('colors.surface.950');
+    color: theme('colors.surface.100');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: theme('colors.brand.600');
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* ========================================================
+     UNIFIED BUTTON SYSTEM
+     ======================================================== */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 ease-in-out select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-950 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98];
+  }
+
+  /* Size variants */
+  .btn-sm {
+    @apply px-2.5 py-1.5 text-xs gap-1.5;
+  }
+  .btn-md {
+    @apply px-3.5 py-2 text-xs sm:text-sm gap-2;
+  }
+  .btn-lg {
+    @apply px-4 py-2.5 text-sm gap-2.5;
+  }
+  .btn-icon-sm {
+    @apply p-1.5 rounded-lg;
+  }
+  .btn-icon-md {
+    @apply p-2 rounded-lg;
+  }
+
+  /* Style variants */
+  .btn-primary {
+    @apply btn bg-brand-600 hover:bg-brand-500 text-white shadow-sm shadow-brand-600/30 hover:shadow-glow-sm focus-visible:ring-brand-500 border border-brand-500/30;
+  }
+
+  .btn-secondary {
+    @apply btn bg-surface-850 hover:bg-surface-800 text-surface-200 hover:text-white border border-surface-700/80 hover:border-surface-600 focus-visible:ring-surface-500 shadow-sm;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent hover:bg-surface-900 text-surface-300 hover:text-white border border-surface-800 hover:border-surface-700 focus-visible:ring-brand-500;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-surface-850/80 text-surface-400 hover:text-surface-100 border border-transparent focus-visible:ring-surface-600;
+  }
+
+  .btn-danger {
+    @apply btn bg-rose-600 hover:bg-rose-500 text-white shadow-sm shadow-rose-600/30 focus-visible:ring-rose-500 border border-rose-500/30;
+  }
+
+  /* ========================================================
+     UNIFIED CARD & SURFACE CONTAINERS
+     ======================================================== */
+  .card {
+    @apply bg-surface-900/80 backdrop-blur-sm border border-surface-800/80 rounded-xl shadow-card;
+  }
+
+  .card-interactive {
+    @apply card hover:border-surface-700/90 hover:shadow-card-hover transition-all duration-200;
+  }
+
+  .card-header {
+    @apply px-5 py-4 border-b border-surface-800/80 flex items-center justify-between;
+  }
+
+  .card-body {
+    @apply p-5 sm:p-6;
+  }
+
+  /* ========================================================
+     UNIFIED FORM INPUTS
+     ======================================================== */
+  .input {
+    @apply w-full bg-surface-950/80 border border-surface-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-surface-100 placeholder-surface-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-150;
+  }
+
+  .input-sm {
+    @apply px-2.5 py-1.5 text-xs;
+  }
+
+  /* ========================================================
+     UNIFIED BADGES
+     ======================================================== */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium border leading-none;
+  }
+
+  .badge-brand {
+    @apply badge bg-brand-500/10 text-brand-300 border-brand-500/25;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-500/10 text-emerald-400 border-emerald-500/25;
+  }
+
+  .badge-warning {
+    @apply badge bg-amber-500/10 text-amber-400 border-amber-500/25;
+  }
+
+  .badge-danger {
+    @apply badge bg-rose-500/10 text-rose-400 border-rose-500/25;
+  }
+
+  .badge-neutral {
+    @apply badge bg-surface-800 text-surface-300 border-surface-700;
+  }
+
+  /* ========================================================
+     UNIFIED TYPOGRAPHY
+     ======================================================== */
+  .heading-xl {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-white;
+  }
+
+  .heading-lg {
+    @apply text-lg sm:text-xl font-semibold tracking-tight text-white;
+  }
+
+  .heading-md {
+    @apply text-sm sm:text-base font-semibold text-surface-100;
+  }
+
+  .subtext {
+    @apply text-xs sm:text-sm text-surface-400 font-normal;
+  }
 }
